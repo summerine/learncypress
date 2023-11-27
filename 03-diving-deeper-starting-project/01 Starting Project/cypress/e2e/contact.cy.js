@@ -57,7 +57,10 @@ describe('contact form', () => {
         cy.get('@inputEmail').focus().blur() //focus on a dom element then blur a focused element
         cy.get('@inputEmail')
         .parent()
-        .should('have.attr', 'class').and('match', /invalid/)
+        .should((el) => {
+            expect(el.attr('class')).not.to.be.undefined //different approach in should usage 
+            expect(el.attr('class')).contains('invalid')
+        })
 
     })
 })
